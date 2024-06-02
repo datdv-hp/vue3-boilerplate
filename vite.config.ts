@@ -14,11 +14,31 @@ export default defineConfig({
     VueDevTools(),
     vuetify({ styles: 'sass' }),
     AutoImport({
+      dts: true,
       imports: [
-        'vue',
+        {
+          from: 'vue',
+          imports: [
+            'ref',
+            'reactive',
+            'shallowRef',
+            'shallowReactive',
+            'computed',
+            'watch',
+            'watchEffect',
+            'onMounted',
+            'onUnmounted',
+            'onBeforeUnmount',
+            'onBeforeMount',
+            'onUpdated',
+            'onBeforeUpdate',
+            'nextTick'
+          ]
+        },
         'vue-router',
         'vue-i18n',
-        { from: 'pinia', imports: ['defineStore', 'storeToRefs'] }
+        { from: 'pinia', imports: ['defineStore', 'storeToRefs'] },
+        { from: 'vee-validate', imports: ['useField', 'useForm', 'useFieldArray'] }
       ]
     }),
     Component({

@@ -3,17 +3,17 @@ import { type LocaleObject } from 'yup';
 const localeObject: Required<LocaleObject> = {
   mixed: {
     default: (params) => {
-      return { i18nKey: 'yup.yup.mixed.default', params };
+      return { i18nKey: 'yup.mixed.default', params };
     },
     required: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.required',
+        i18nKey: 'yup.mixed.required',
         params
       };
     },
     oneOf: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.oneOf',
+        i18nKey: 'yup.mixed.oneOf',
         params: {
           path: params.path,
           values: params.values
@@ -22,25 +22,25 @@ const localeObject: Required<LocaleObject> = {
     },
     notOneOf: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.notOneOf',
+        i18nKey: 'yup.mixed.notOneOf',
         params
       };
     },
     defined: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.defined',
+        i18nKey: 'yup.mixed.defined',
         params
       };
     },
     notNull: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.notNull',
+        i18nKey: 'yup.mixed.notNull',
         params
       };
     },
     notType: (params) => {
       return {
-        i18nKey: 'yup.yup.mixed.notType',
+        i18nKey: 'yup.mixed.notType',
         params
       };
     }
@@ -48,103 +48,103 @@ const localeObject: Required<LocaleObject> = {
   string: {
     length: (params) => {
       return {
-        i18nKey: 'yup.yup.string.length',
+        i18nKey: 'yup.string.length',
         params
       };
     },
     min: (params) => {
       return {
-        i18nKey: 'yup.yup.string.min',
+        i18nKey: 'yup.string.min',
         params
       };
     },
     max: (params) => {
       return {
-        i18nKey: 'yup.yup.string.max',
+        i18nKey: 'yup.string.max',
         params
       };
     },
     matches: (params) => {
       return {
-        i18nKey: 'yup.yup.string.matches',
+        i18nKey: 'yup.string.matches',
         params
       };
     },
     email: (params) => {
       return {
-        i18nKey: 'yup.yup.string.email',
+        i18nKey: 'yup.string.email',
         params
       };
     },
     url: (params) => {
       return {
-        i18nKey: 'yup.yup.string.url',
+        i18nKey: 'yup.string.url',
         params
       };
     },
     uuid: (params) => {
       return {
-        i18nKey: 'yup.yup.string.uuid',
+        i18nKey: 'yup.string.uuid',
         params
       };
     },
     trim: (params) => {
       return {
-        i18nKey: 'yup.yup.string.trim',
+        i18nKey: 'yup.string.trim',
         params
       };
     },
     lowercase: (params) => {
       return {
-        i18nKey: 'yup.yup.string.lowercase',
+        i18nKey: 'yup.string.lowercase',
         params
       };
     },
     uppercase: (params) => {
       return {
-        i18nKey: 'yup.yup.string.uppercase',
+        i18nKey: 'yup.string.uppercase',
         params
       };
     }
   },
   number: {
     min: (params) => ({
-      i18nKey: 'yup.yup.number.min',
+      i18nKey: 'yup.number.min',
       params
     }),
     max: (params) => {
       return {
-        i18nKey: 'yup.yup.number.max',
+        i18nKey: 'yup.number.max',
         params
       };
     },
     lessThan: (params) => {
       return {
-        i18nKey: 'yup.yup.number.less',
+        i18nKey: 'yup.number.less',
         params
       };
     },
     moreThan: (params) => {
       return {
-        i18nKey: 'yup.yup.number.more',
+        i18nKey: 'yup.number.more',
         params
       };
     },
     positive: (params) => {
       return {
-        i18nKey: 'yup.yup.number.positive',
+        i18nKey: 'yup.number.positive',
         params
       };
     },
     negative: (params) => {
       return {
-        i18nKey: 'yup.yup.number.negative',
+        i18nKey: 'yup.number.negative',
         params
       };
     },
     integer: (params) => {
       return {
-        i18nKey: 'yup.yup.number.integer',
+        i18nKey: 'yup.number.integer',
         params
       };
     }
@@ -152,13 +152,13 @@ const localeObject: Required<LocaleObject> = {
   date: {
     min: (params) => {
       return {
-        i18nKey: 'yup.yup.date.min',
+        i18nKey: 'yup.date.min',
         params
       };
     },
     max: (params) => {
       return {
-        i18nKey: 'yup.yup.date.max',
+        i18nKey: 'yup.date.max',
         params
       };
     }
@@ -166,7 +166,7 @@ const localeObject: Required<LocaleObject> = {
   boolean: {
     isValue: (params) => {
       return {
-        i18nKey: 'yup.yup.boolean.isValue',
+        i18nKey: 'yup.boolean.isValue',
         params
       };
     }
@@ -174,7 +174,7 @@ const localeObject: Required<LocaleObject> = {
   object: {
     noUnknown: (params) => {
       return {
-        i18nKey: 'yup.yup.object.noUnknown',
+        i18nKey: 'yup.object.noUnknown',
         params: {
           ...params,
           unknown: params.value
@@ -185,19 +185,19 @@ const localeObject: Required<LocaleObject> = {
   array: {
     min: (params) => {
       return {
-        i18nKey: 'yup.yup.array.min',
+        i18nKey: 'yup.array.min',
         params
       };
     },
     max: (params) => {
       return {
-        i18nKey: 'yup.yup.array.max',
+        i18nKey: 'yup.array.max',
         params
       };
     },
     length: (params) => {
       return {
-        i18nKey: 'yup.yup.array.length',
+        i18nKey: 'yup.array.length',
         params
       };
     }
@@ -205,7 +205,7 @@ const localeObject: Required<LocaleObject> = {
   tuple: {
     notType: (params) => {
       return {
-        i18nKey: 'yup.yup.tuple.notType',
+        i18nKey: 'yup.tuple.notType',
         params
       };
     }

@@ -22,10 +22,12 @@ export function isStringify<T>(obj: T | Record<string, unknown>): boolean {
 export function translateYupError(
   yupError: { i18nKey: string; params?: Record<string, string> } | string
 ): string {
-  console.log(yupError);
+  // @ts-ignore
+  const t = i18n.global.t;
+  if (!yupError) return '';
   if (typeof yupError === 'string') {
-    return i18n.global.t(yupError);
+    return t(yupError);
   }
   if (!yupError?.i18nKey) return '';
-  return i18n.global.t(yupError?.i18nKey, { ...(yupError?.params || {}) });
+  return t(yupError?.i18nKey, { ...(yupError?.params || {}) });
 }

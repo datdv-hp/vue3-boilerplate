@@ -1,9 +1,9 @@
-export const DEFAULT_LANGUAGE = 'vi';
-
 export enum SupportLanguage {
   VI = 'vi',
   EN = 'en'
 }
+export const DEFAULT_LANGUAGE = SupportLanguage.VI;
+
 export enum OrderDirection {
   ASC = 'asc',
   DESC = 'desc'

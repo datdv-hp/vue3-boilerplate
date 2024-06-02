@@ -1,10 +1,10 @@
 import { SupportLanguage } from '@/common/constants/common.constant';
 
-const locales: Record<string, any> = {};
+const messages: { [key in string]: any } = {};
 const langs = Object.values(SupportLanguage);
-const localeFiles = import.meta.glob<{ default: Record<string, object> }>(
+const localeFiles = import.meta.glob<Record<string, any>>(
   ['@/modules/**/locale/*/*.ts', '@/common/locale/*/*.ts', '@/plugins/yup/locale/*/*.ts'],
-  { eager: true }
+  { eager: true, import: 'default' }
 );
 
 /**
@@ -29,11 +29,14 @@ for (const path in localeFiles) {
   const module = paths[length - 4];
   const matchedName = camelCase(paths[length - 1]);
   if (lang) {
-    locales[lang] ??= {};
-    locales[lang][module] ??= {};
-    locales[lang][module][matchedName] ??= {};
-    locales[lang][module][matchedName] = localeFiles[path].default;
+    messages[lang] ??= {};
+    messages[lang][module] ??= {};
+    if (module === matchedName) {
+      Object.assign(messages[lang][module], localeFiles[path]);
+      continue;
+    }
+    messages[lang][module][matchedName] ??= {};
+    Object.assign(messages[lang][module][matchedName], localeFiles[path]);
   }
 }
-
-export default locales;
+export default messages;

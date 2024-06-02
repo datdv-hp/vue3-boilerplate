@@ -11,7 +11,7 @@ import VueRouteMiddleware, { GLOBAL_MIDDLEWARE_NAME } from './middleware';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '',
     redirect: { name: PageName.DASHBOARD_PAGE }
   },
   ...moduleRoutes,
@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/:catchAll(.*)*',
-    redirect: '/404'
+    redirect: '404'
   }
 ];
 

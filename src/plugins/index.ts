@@ -5,7 +5,7 @@ import vuetify from './vuetify';
 import i18n from './vue-i18n';
 
 export const initPlugins = (app: App) => {
-  app.use(i18n);
+  i18n.install(app);
   app.use(pinia);
   app.use(router);
   app.use(vuetify);
