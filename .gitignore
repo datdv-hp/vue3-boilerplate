@@ -33,3 +33,5 @@ coverage
 vite.config.js
 auto-imports.d.ts
 components.d.ts
+
+.env

@@ -1,49 +1,35 @@
+import { PageName } from '@/common/constants/common.constant';
+import localStorageAuthService from '@/common/storages/authStorage';
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 
 export default async (
+  to: RouteLocationNormalized,
   _: RouteLocationNormalized,
-  __: RouteLocationNormalized,
   next: NavigationGuardNext
 ): Promise<void> => {
-  // const permission = localStorageAuthService.getUserPermission();
-  // const IS_PUBLIC = to?.meta?.public || false;
-  // const onlyWhenLoggedOut = to?.meta?.onlyWhenLoggedOut || false;
-  // const hasToken = localStorageAuthService.getAccessToken() ? true : false;
-  // const tokenExpiredAt = localStorageAuthService.getAccessTokenExpiredAt();
-  // const isExpired = dayjs().isAfter(dayjs(tokenExpiredAt), 'second');
+  const {
+    public: isPublic,
+    onlyWhenLoggedOut
+  }: {
+    public?: boolean;
+    onlyWhenLoggedOut?: boolean;
+    requiredPermissions?: string | string[];
+  } = to?.meta || {};
+  const loggedIn = !!localStorageAuthService.getAccessToken();
+  if (isPublic) {
+    // Do not allow user to visit entry page if they are logged in
+    if (loggedIn && onlyWhenLoggedOut) {
+      return next({ name: PageName.DASHBOARD_PAGE });
+    }
+    return next();
+  }
 
-  // const IS_AUTHENTICATED = tokenExpiredAt && !isExpired && hasToken;
-  // if (!IS_AUTHENTICATED && to.name !== PageName.SIGN_IN_PAGE && !IS_PUBLIC) {
-  //   sessionStorage.setItem('redirect', to.fullPath);
-  //   return next({ name: PageName.SIGN_IN_PAGE });
-  // }
-  // if (IS_PUBLIC) {
-  //   // Do not allow user to visit entry page if they are logged in
-  //   if (IS_AUTHENTICATED && onlyWhenLoggedOut) {
-  //     return next({ name: PageName.DASHBOARD_PAGE });
-  //   }
-  //   return next();
-  // }
-  // if (!IS_PUBLIC && !IS_AUTHENTICATED) {
-  //   return next({
-  //     name: PageName.SIGN_IN_PAGE
-  //   });
-  // }
-  // if (IS_AUTHENTICATED) {
-  //   const metaRole = to?.meta?.role || [];
-  //   let hasPermission = false;
-  //   if (typeof metaRole === 'string') {
-  //     hasPermission = get(permission, metaRole, false);
-  //   } else if (Array.isArray(metaRole)) {
-  //     hasPermission = metaRole.length
-  //       ? metaRole.some((permission) => get(permission, permission, false))
-  //       : true;
-  //   }
-  //   if (hasPermission) {
-  //     return next();
-  //   } else {
-  //     return next({ name: PageName.DASHBOARD_PAGE });
-  //   }
-  // }
+  if (loggedIn) {
+    // TODO: Check if user has required permissions
+    const hasPermission = true;
+    if (!hasPermission) {
+      return next({ name: PageName.FORBIDDEN_PAGE });
+    }
+  }
   return next();
 };
