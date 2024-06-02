@@ -1,0 +1,12 @@
+# version: '3.8'
+services:
+  otv-frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: otv-frontend
+    restart: always
+    ports:
+      - 8080:80
+    env_file:
+      - ./.env
